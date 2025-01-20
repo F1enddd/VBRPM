@@ -322,7 +322,6 @@ WHERE
         Dim Items(4) As String
         Dim TempRow As DataRow
         Dim RowFilterPosts As DataRow = User1DataSet.Posts.Select("Title = '" & ComboBoxFilterPosts.SelectedItem & "'")(0)
-        'MsgBox(ComboBoxFilterPosts.SelectedItem)
         Dim RowID_Post As ULong = RowFilterPosts("ID")
         RowID_Post = RowFilterPosts("ID")
         For Each Row As DataRow In Me.User1DataSet.Workers.Rows
@@ -342,7 +341,7 @@ WHERE
         Next Row
     End Sub
 
-    Private Sub TextBoxFIOFilter_TextChanged(sender As Object, e As EventArgs) Handles TextBoxFIOFilter.TextChanged, TextBoxDepartamentsSearch.TextChanged
+    Private Sub TextBoxFIOFilter_TextChanged(sender As Object, e As EventArgs) Handles TextBoxFIOFilter.TextChanged
         WorkersListView.Items.Clear()
         Dim Items(4) As String
         Dim TempRow As DataRow
@@ -401,30 +400,39 @@ WHERE
 
     End Sub
 
-    'Private Sub Label4_TextChanged(sender As Object, e As EventArgs) Handles Label4.TextChanged
-    '    WorkersListView.Items.Clear()
-    '    Dim Items(4) As String
-    '    Dim TempRow As DataRow
-    '    Dim StrFindFIO As String
+    Private Sub TextBoxDepartamentsSearch_TextChanged(sender As Object, e As EventArgs) Handles TextBoxDepartamentsSearch.TextChanged
 
-    '    If TextBoxDepartamentsSearch.Text = vbNullChar Then
-    '        TextBoxDepartamentsSearch.Text = " "
-    '    End If
+        WorkersListView.Items.Clear()
+        Dim Items(4) As String
+        Dim TempRow As DataRow
+        Dim StrFindDep As String
 
-    '    StrFindFIO = TextBoxDepartamentsSearch.Text
-    '    Dim results = Me.WorkersTableAdapter.GetByDepartmentTitle("%" & StrFindFIO & "%")
-    '    For Each row As DataRow In results.Rows
-    '        Items(1) = row(1)
-    '        Items(2) = row(2)
-    '        TempRow = row.GetParentRow("FK_Workers_Departaments")
-    '        Items(3) = TempRow(1)
-    '        TempRow = row.GetParentRow("FK_Workers_Posts")
-    '        Items(4) = TempRow(1)
-    '        Dim it As New ListViewItem()
-    '        it.Text = row(0)
-    '        it.SubItems.AddRange(Items)
-    '        WorkersListView.Items.Add(it)
-    '    Next row
-    'End Sub
+
+        If TextBoxDepartamentsSearch.Text = vbNullChar Then
+            TextBoxDepartamentsSearch.Text = " "
+        End If
+
+        StrFindDep = TextBoxDepartamentsSearch.Text
+
+
+        For Each Row As DataRow In Me.User1DataSet.Departaments.Select("Title LIKE '%" & StrFindDep & "%'")
+            Dim SrchRow As ULong = Row("ID")
+            Dim DepartmentTitle As String = Row("Title")
+            For Each Row1 As DataRow In Me.User1DataSet.Workers.Select("DepartamentID = " & SrchRow)
+                Items(1) = Row1("FIO")
+                Items(2) = Row1("Birthday")
+                Items(3) = DepartmentTitle
+                TempRow = Row1.GetParentRow("FK_Workers_Posts")
+                Items(4) = TempRow("Title")
+                Dim it As New ListViewItem()
+                it.Text = Row1("ID")
+                it.SubItems.AddRange(Items)
+                WorkersListView.Items.Add(it)
+            Next Row1
+        Next Row
+    End Sub
+
+
+
 
 End Class
