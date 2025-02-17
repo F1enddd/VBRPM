@@ -48,7 +48,7 @@
                 PicBoxAOC.Image = Image.FromFile(FilesListBox.SelectedItem.ToString())
             Catch
                 FileNameTB.Text = "Файл не найден"
-                PicBoxAOC.Image = Image.FromFile(IO.Directory.GetCurrentDirectory & "\Picture\notexist.png")
+                PicBoxAOC.Image = Image.FromFile(IO.Directory.GetCurrentDirectory & "\Picture\exept\notexist.png")
             End Try
         End If
     End Sub

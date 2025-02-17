@@ -28,7 +28,7 @@ Partial Class Form10
         Me.SelectImageButton = New System.Windows.Forms.Button()
         Me.PicBoxAOC = New System.Windows.Forms.PictureBox()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
-        Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
+        Me.FilesListBox = New System.Windows.Forms.CheckedListBox()
         CType(Me.PicBoxAOC, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -84,20 +84,21 @@ Partial Class Form10
         Me.PicBoxAOC.TabIndex = 53
         Me.PicBoxAOC.TabStop = False
         '
-        'CheckedListBox1
+        'FilesListBox
         '
-        Me.CheckedListBox1.FormattingEnabled = True
-        Me.CheckedListBox1.Location = New System.Drawing.Point(12, 12)
-        Me.CheckedListBox1.Name = "CheckedListBox1"
-        Me.CheckedListBox1.Size = New System.Drawing.Size(301, 244)
-        Me.CheckedListBox1.TabIndex = 59
+        Me.FilesListBox.CheckOnClick = True
+        Me.FilesListBox.FormattingEnabled = True
+        Me.FilesListBox.Location = New System.Drawing.Point(12, 12)
+        Me.FilesListBox.Name = "FilesListBox"
+        Me.FilesListBox.Size = New System.Drawing.Size(301, 244)
+        Me.FilesListBox.TabIndex = 59
         '
         'Form10
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(514, 329)
-        Me.Controls.Add(Me.CheckedListBox1)
+        Me.Controls.Add(Me.FilesListBox)
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.FileNameTB)
         Me.Controls.Add(Me.SetImageButton)
@@ -117,5 +118,5 @@ Partial Class Form10
     Friend WithEvents SelectImageButton As Button
     Friend WithEvents PicBoxAOC As PictureBox
     Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
-    Friend WithEvents CheckedListBox1 As CheckedListBox
+    Friend WithEvents FilesListBox As CheckedListBox
 End Class

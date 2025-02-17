@@ -1,9 +1,12 @@
 ﻿Public Class Form10
     Public DialogResOk As Boolean
+    Dim SaveFolderPic As String = (IO.Directory.GetCurrentDirectory() & "\Picture\")
+    Dim CheckItems As Integer = 0
     Private Sub SelectImageButton_Click(sender As Object, e As EventArgs) Handles SelectImageButton.Click
         If FolderBrowserDialog1.ShowDialog() = DialogResult.OK Then
             DialogResOk = True
             AddListFiles(FolderBrowserDialog1.SelectedPath)
+
         End If
     End Sub
 
@@ -39,7 +42,7 @@
         End If
     End Sub
 
-    Private Sub FilesListBox_SelectedIndexChanged(sender As Object, e As EventArgs)
+    Private Sub FilesListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles FilesListBox.SelectedIndexChanged
         If Not FilesListBox.SelectedItem = Nothing Then
 
             Dim FilePath = FilesListBox.SelectedItem.ToString()
@@ -48,43 +51,42 @@
                 PicBoxAOC.Image = Image.FromFile(FilesListBox.SelectedItem.ToString())
             Catch
                 FileNameTB.Text = "Файл не найден"
-                PicBoxAOC.Image = Image.FromFile(IO.Directory.GetCurrentDirectory & "\Picture\notexist.png")
+                PicBoxAOC.Image = Image.FromFile(IO.Directory.GetCurrentDirectory & "\Picture\exept\notexist.png")
             End Try
         End If
     End Sub
 
     Private Sub SetImageButton_Click(sender As Object, e As EventArgs) Handles SetImageButton.Click
-        If FilesListBox.SelectedItem Is Nothing Then
-            MessageBox.Show("Изображение не выбрано!")
-            Exit Sub
-        End If
+        For Each File As String In FilesListBox.CheckedItems
+            Dim FilePath = File.ToString()
 
-        Dim FilePath = FilesListBox.SelectedItem.ToString()
-
-        If My.Computer.FileSystem.FileExists(FilePath) = False Then
-            MessageBox.Show("Файл не найден: " + FilePath)
-            Exit Sub
-        End If
-
-        Dim sNameFile As String = My.Computer.FileSystem.GetFileInfo(FilePath).Name
-
-        Dim SaveFolderPic As String = (IO.Directory.GetCurrentDirectory() & "\Picture\")
-
-        Dim SNewFilePath As String = SaveFolderPic & Format(DateTime.Now, "dd.MM.yyyy_HH.mm.ss") & sNameFile
-
-        Dim DS As String = IO.Directory.GetCurrentDirectory() & "\Picture\" & sNameFile
-
-        Try
-            If Not FilePath = (DS) Then
-                My.Computer.FileSystem.CopyFile(FilePath, SNewFilePath)
-
-            Else
-
+            If My.Computer.FileSystem.FileExists(FilePath) = False Then
+                MessageBox.Show("Файл не найден: " + FilePath)
+                Exit Sub
             End If
 
-        Catch ex As Exception
-            MessageBox.Show(ex.Message)
-        End Try
+            Dim sNameFile As String = My.Computer.FileSystem.GetFileInfo(FilePath).Name
+
+
+
+            Dim SNewFilePath As String = SaveFolderPic & Format(DateTime.Now, "dd.MM.yyyy_HH.mm.ss") & sNameFile
+
+            Dim OutFilePath As String = My.Computer.FileSystem.GetFileInfo(SNewFilePath).Name
+
+            Dim DS As String = IO.Directory.GetCurrentDirectory() & "\Picture\" & OutFilePath
+
+            Try
+                If Not FilePath = (DS) Then
+                    My.Computer.FileSystem.CopyFile(FilePath, SNewFilePath)
+                End If
+                Form1.PictureDopTableAdapter1.Insert(Form1.LastSelectedItem.Text, OutFilePath)
+
+
+            Catch ex As Exception
+                MessageBox.Show(ex.Message)
+            End Try
+        Next File
+
 
 
 
@@ -92,18 +94,14 @@
     End Sub
 
     Private Sub Form8_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        AddListFiles(IO.Directory.GetCurrentDirectory() & "\Picture\")
-    End Sub
-
-    Private Sub FileNameTB_TextChanged(sender As Object, e As EventArgs) Handles FileNameTB.TextChanged
-
-    End Sub
-
-    Private Sub Label3_Click(sender As Object, e As EventArgs) Handles Label3.Click
+        For Each Row As DataRow In Form1.User1DataSet.PictureDop.Select("ID_Workers = '" & Form1.LastSelectedItem.Text & "'")
+            FilesListBox.Items.Add(SaveFolderPic & Row("PhotoName"))
+            FilesListBox.SetItemChecked(CheckItems, True)
+            CheckItems = CheckItems + 1
+        Next Row
 
     End Sub
 
-    Private Sub PicBoxAOC_Click(sender As Object, e As EventArgs) Handles PicBoxAOC.Click
 
-    End Sub
+
 End Class
