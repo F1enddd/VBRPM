@@ -1,10 +1,31 @@
-﻿Public Class Form1
+﻿Imports System.Data.SqlClient
+Imports System.Configuration
+
+Public Class Form1
     Dim DataSelectTable As New DataTable
 
-    Dim LastSelectedItem As ListViewItem
+    Public LastSelectedItem As ListViewItem
     Dim MaxPhoto As Integer
     Dim CurrentPhoto As Integer
     Public CurrentName As String
+
+    Private ReadOnly connectionStrings As String() = {
+        ConfigurationManager.ConnectionStrings("_7._1_1.My.MySettings.WorkersConnectionString").ConnectionString,
+        ConfigurationManager.ConnectionStrings("Home._7._1_1.My.MySettings.WorkersConnectionString").ConnectionString
+    }
+
+    Private activeConnectionString As String
+    Private Function TestConnection(connectionString As String) As Boolean
+        Try
+            Using conn As New SqlConnection(connectionString)
+                conn.Open()
+                Return True
+            End Using
+        Catch
+            Return False
+        End Try
+    End Function
+
 
     Public Sub FillWorkersList()
         Me.WorkersTableAdapter.Fill(Me.User1DataSet.Workers)
@@ -75,12 +96,18 @@
     End Sub
 
     Private Sub Form1_Load(sender As Object, e As EventArgs) Handles MyBase.Load
-        'TODO: данная строка кода позволяет загрузить данные в таблицу "User1DataSet.Workers". При необходимости она может быть перемещена или удалена.
-        Me.WorkersTableAdapter.Fill(Me.User1DataSet.Workers)
-        'TODO: данная строка кода позволяет загрузить данные в таблицу "User1DataSet.Posts". При необходимости она может быть перемещена или удалена.
-        Me.PostsTableAdapter.Fill(Me.User1DataSet.Posts)
-        'TODO: данная строка кода позволяет загрузить данные в таблицу "User1DataSet.Departaments". При необходимости она может быть перемещена или удалена.
-        Me.DepartamentsTableAdapter.Fill(Me.User1DataSet.Departaments)
+        For Each connStr In connectionStrings
+            If TestConnection(connStr) Then
+                activeConnectionString = connStr
+                MessageBox.Show("Подключение успешно! Используется строка: " & activeConnectionString, "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information)
+                Exit For
+            End If
+        Next
+
+        If String.IsNullOrEmpty(activeConnectionString) Then
+            MessageBox.Show("Не удалось подключиться ни к одной базе данных.", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error)
+        End If
+
         FillWorkersList()
     End Sub
 
@@ -321,7 +348,7 @@ WHERE
             .OldRowID = CurrentWorkersRow("ID")
             .AddOrChange = True
             .FIOText.Text = CurrentWorkersRow("FIO")
-            name = CurrentWorkersRow("FIO")
+            Name = CurrentWorkersRow("FIO")
             .BirthdayDate.Value = CurrentWorkersRow("Birthday")
             .DepartamentsSelect.Text = CurrentWorkersRow.GetParentRow("FK_Workers_Departaments")("Title")
             .DepartamentsSelect.Items.Clear()

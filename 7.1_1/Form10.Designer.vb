@@ -22,37 +22,51 @@ Partial Class Form10
     'Не изменяйте ее в редакторе исходного кода.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
-        Me.FilesListBox = New System.Windows.Forms.ListBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.FileNameTB = New System.Windows.Forms.TextBox()
         Me.SetImageButton = New System.Windows.Forms.Button()
         Me.SelectImageButton = New System.Windows.Forms.Button()
         Me.PicBoxAOC = New System.Windows.Forms.PictureBox()
         Me.FolderBrowserDialog1 = New System.Windows.Forms.FolderBrowserDialog()
+        Me.CheckedListBox1 = New System.Windows.Forms.CheckedListBox()
         CType(Me.PicBoxAOC, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
-        'FilesListBox
+        'Label3
         '
-        Me.FilesListBox.FormattingEnabled = True
-        Me.FilesListBox.HorizontalScrollbar = True
-        Me.FilesListBox.Location = New System.Drawing.Point(12, 12)
-        Me.FilesListBox.Name = "FilesListBox"
-        Me.FilesListBox.Size = New System.Drawing.Size(301, 238)
-        Me.FilesListBox.TabIndex = 56
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(316, 265)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(36, 13)
+        Me.Label3.TabIndex = 58
+        Me.Label3.Text = "Файл"
+        '
+        'FileNameTB
+        '
+        Me.FileNameTB.BackColor = System.Drawing.Color.White
+        Me.FileNameTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.FileNameTB.Location = New System.Drawing.Point(354, 262)
+        Me.FileNameTB.Name = "FileNameTB"
+        Me.FileNameTB.ReadOnly = True
+        Me.FileNameTB.Size = New System.Drawing.Size(151, 20)
+        Me.FileNameTB.TabIndex = 57
+        Me.FileNameTB.Tag = ""
+        Me.FileNameTB.WordWrap = False
         '
         'SetImageButton
         '
         Me.SetImageButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.SetImageButton.Location = New System.Drawing.Point(370, 256)
+        Me.SetImageButton.Location = New System.Drawing.Point(370, 293)
         Me.SetImageButton.Name = "SetImageButton"
         Me.SetImageButton.Size = New System.Drawing.Size(135, 23)
         Me.SetImageButton.TabIndex = 54
-        Me.SetImageButton.Text = "Удалить"
+        Me.SetImageButton.Text = "Установить"
         Me.SetImageButton.UseVisualStyleBackColor = True
         '
         'SelectImageButton
         '
         Me.SelectImageButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.SelectImageButton.Location = New System.Drawing.Point(12, 256)
+        Me.SelectImageButton.Location = New System.Drawing.Point(12, 293)
         Me.SelectImageButton.Name = "SelectImageButton"
         Me.SelectImageButton.Size = New System.Drawing.Size(135, 23)
         Me.SelectImageButton.TabIndex = 55
@@ -65,17 +79,27 @@ Partial Class Form10
         Me.PicBoxAOC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.PicBoxAOC.Location = New System.Drawing.Point(319, 12)
         Me.PicBoxAOC.Name = "PicBoxAOC"
-        Me.PicBoxAOC.Size = New System.Drawing.Size(186, 238)
+        Me.PicBoxAOC.Size = New System.Drawing.Size(186, 244)
         Me.PicBoxAOC.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
         Me.PicBoxAOC.TabIndex = 53
         Me.PicBoxAOC.TabStop = False
+        '
+        'CheckedListBox1
+        '
+        Me.CheckedListBox1.FormattingEnabled = True
+        Me.CheckedListBox1.Location = New System.Drawing.Point(12, 12)
+        Me.CheckedListBox1.Name = "CheckedListBox1"
+        Me.CheckedListBox1.Size = New System.Drawing.Size(301, 244)
+        Me.CheckedListBox1.TabIndex = 59
         '
         'Form10
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(520, 290)
-        Me.Controls.Add(Me.FilesListBox)
+        Me.ClientSize = New System.Drawing.Size(514, 329)
+        Me.Controls.Add(Me.CheckedListBox1)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.FileNameTB)
         Me.Controls.Add(Me.SetImageButton)
         Me.Controls.Add(Me.SelectImageButton)
         Me.Controls.Add(Me.PicBoxAOC)
@@ -83,11 +107,15 @@ Partial Class Form10
         Me.Text = "Form10"
         CType(Me.PicBoxAOC, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
+        Me.PerformLayout()
 
     End Sub
-    Friend WithEvents FilesListBox As ListBox
+
+    Friend WithEvents Label3 As Label
+    Friend WithEvents FileNameTB As TextBox
     Friend WithEvents SetImageButton As Button
     Friend WithEvents SelectImageButton As Button
     Friend WithEvents PicBoxAOC As PictureBox
     Friend WithEvents FolderBrowserDialog1 As FolderBrowserDialog
+    Friend WithEvents CheckedListBox1 As CheckedListBox
 End Class

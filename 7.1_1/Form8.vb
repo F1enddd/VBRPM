@@ -96,4 +96,16 @@
     Private Sub Form8_Load(sender As Object, e As EventArgs) Handles MyBase.Load
         AddListFiles(IO.Directory.GetCurrentDirectory() & "\Picture\")
     End Sub
+
+    Private Sub FileNameTB_TextChanged(sender As Object, e As EventArgs) Handles FileNameTB.TextChanged
+
+    End Sub
+
+    Private Sub Label3_Click(sender As Object, e As EventArgs) Handles Label3.Click
+
+    End Sub
+
+    Private Sub PicBoxAOC_Click(sender As Object, e As EventArgs) Handles PicBoxAOC.Click
+
+    End Sub
 End Class

@@ -39,18 +39,18 @@
         End If
     End Sub
 
-    Private Sub FilesListBox_SelectedIndexChanged(sender As Object, e As EventArgs) Handles FilesListBox.SelectedIndexChanged
-        'If Not FilesListBox.SelectedItem = Nothing Then
+    Private Sub FilesListBox_SelectedIndexChanged(sender As Object, e As EventArgs)
+        If Not FilesListBox.SelectedItem = Nothing Then
 
-        '    Dim FilePath = FilesListBox.SelectedItem.ToString()
-        '    Try
-        '        FileNameTB.Text = My.Computer.FileSystem.GetFileInfo(FilePath).Name
-        '        PicBoxAOC.Image = Image.FromFile(FilesListBox.SelectedItem.ToString())
-        '    Catch
-        '        FileNameTB.Text = "Файл не найден"
-        '        PicBoxAOC.Image = Image.FromFile(IO.Directory.GetCurrentDirectory & "\Picture\notexist.png")
-        '    End Try
-        'End If
+            Dim FilePath = FilesListBox.SelectedItem.ToString()
+            Try
+                FileNameTB.Text = My.Computer.FileSystem.GetFileInfo(FilePath).Name
+                PicBoxAOC.Image = Image.FromFile(FilesListBox.SelectedItem.ToString())
+            Catch
+                FileNameTB.Text = "Файл не найден"
+                PicBoxAOC.Image = Image.FromFile(IO.Directory.GetCurrentDirectory & "\Picture\notexist.png")
+            End Try
+        End If
     End Sub
 
     Private Sub SetImageButton_Click(sender As Object, e As EventArgs) Handles SetImageButton.Click
@@ -77,11 +77,9 @@
         Try
             If Not FilePath = (DS) Then
                 My.Computer.FileSystem.CopyFile(FilePath, SNewFilePath)
-                Dialog1.PicBoxAOC.Image = Image.FromFile(SNewFilePath)
-                Dialog1.FileNameTB.Text = My.Computer.FileSystem.GetFileInfo(SNewFilePath).Name
+
             Else
-                Dialog1.PicBoxAOC.Image = Image.FromFile(FilePath)
-                Dialog1.FileNameTB.Text = My.Computer.FileSystem.GetFileInfo(FilePath).Name
+
             End If
 
         Catch ex As Exception
@@ -94,6 +92,18 @@
     End Sub
 
     Private Sub Form8_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+        AddListFiles(IO.Directory.GetCurrentDirectory() & "\Picture\")
+    End Sub
+
+    Private Sub FileNameTB_TextChanged(sender As Object, e As EventArgs) Handles FileNameTB.TextChanged
+
+    End Sub
+
+    Private Sub Label3_Click(sender As Object, e As EventArgs) Handles Label3.Click
+
+    End Sub
+
+    Private Sub PicBoxAOC_Click(sender As Object, e As EventArgs) Handles PicBoxAOC.Click
 
     End Sub
 End Class
