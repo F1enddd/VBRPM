@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Dialog1
     Inherits System.Windows.Forms.Form
 
     'Форма переопределяет dispose для очистки списка компонентов.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Dialog1
     'Примечание: следующая процедура является обязательной для конструктора форм Windows Forms
     'Для ее изменения используйте конструктор форм Windows Form.  
     'Не изменяйте ее в редакторе исходного кода.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.TableLayoutPanel2 = New System.Windows.Forms.TableLayoutPanel()
         Me.OK_Button = New System.Windows.Forms.Button()
@@ -35,7 +35,13 @@ Partial Class Dialog1
         Me.LabelDate = New System.Windows.Forms.Label()
         Me.LabelFIO = New System.Windows.Forms.Label()
         Me.FIOText = New System.Windows.Forms.TextBox()
+        Me.PicBoxAOC = New System.Windows.Forms.PictureBox()
+        Me.PicButton = New System.Windows.Forms.Button()
+        Me.FileNameTB = New System.Windows.Forms.TextBox()
+        Me.Label3 = New System.Windows.Forms.Label()
+        Me.ButtonDopImages = New System.Windows.Forms.Button()
         Me.TableLayoutPanel2.SuspendLayout()
+        CType(Me.PicBoxAOC, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'TableLayoutPanel2
@@ -46,7 +52,7 @@ Partial Class Dialog1
         Me.TableLayoutPanel2.ColumnStyles.Add(New System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
         Me.TableLayoutPanel2.Controls.Add(Me.OK_Button, 0, 0)
         Me.TableLayoutPanel2.Controls.Add(Me.Cancel_Button, 1, 0)
-        Me.TableLayoutPanel2.Location = New System.Drawing.Point(277, 271)
+        Me.TableLayoutPanel2.Location = New System.Drawing.Point(398, 272)
         Me.TableLayoutPanel2.Name = "TableLayoutPanel2"
         Me.TableLayoutPanel2.RowCount = 1
         Me.TableLayoutPanel2.RowStyles.Add(New System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50.0!))
@@ -78,7 +84,7 @@ Partial Class Dialog1
         '
         Me.ButtonAddPosts.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.ButtonAddPosts.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonAddPosts.Location = New System.Drawing.Point(216, 234)
+        Me.ButtonAddPosts.Location = New System.Drawing.Point(213, 234)
         Me.ButtonAddPosts.Name = "ButtonAddPosts"
         Me.ButtonAddPosts.Size = New System.Drawing.Size(67, 21)
         Me.ButtonAddPosts.TabIndex = 41
@@ -88,7 +94,7 @@ Partial Class Dialog1
         '
         Me.ButtonAddDepartaments.Anchor = System.Windows.Forms.AnchorStyles.None
         Me.ButtonAddDepartaments.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonAddDepartaments.Location = New System.Drawing.Point(216, 169)
+        Me.ButtonAddDepartaments.Location = New System.Drawing.Point(213, 169)
         Me.ButtonAddDepartaments.Name = "ButtonAddDepartaments"
         Me.ButtonAddDepartaments.Size = New System.Drawing.Size(67, 21)
         Me.ButtonAddDepartaments.TabIndex = 40
@@ -160,15 +166,69 @@ Partial Class Dialog1
         Me.FIOText.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
         Me.FIOText.Location = New System.Drawing.Point(10, 33)
         Me.FIOText.Name = "FIOText"
-        Me.FIOText.Size = New System.Drawing.Size(414, 20)
+        Me.FIOText.Size = New System.Drawing.Size(270, 20)
         Me.FIOText.TabIndex = 32
+        '
+        'PicBoxAOC
+        '
+        Me.PicBoxAOC.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PicBoxAOC.Location = New System.Drawing.Point(410, 23)
+        Me.PicBoxAOC.Name = "PicBoxAOC"
+        Me.PicBoxAOC.Size = New System.Drawing.Size(131, 158)
+        Me.PicBoxAOC.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PicBoxAOC.TabIndex = 42
+        Me.PicBoxAOC.TabStop = False
+        '
+        'PicButton
+        '
+        Me.PicButton.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.PicButton.Location = New System.Drawing.Point(410, 188)
+        Me.PicButton.Name = "PicButton"
+        Me.PicButton.Size = New System.Drawing.Size(131, 23)
+        Me.PicButton.TabIndex = 43
+        Me.PicButton.Text = "Обзор"
+        Me.PicButton.UseVisualStyleBackColor = True
+        '
+        'FileNameTB
+        '
+        Me.FileNameTB.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.FileNameTB.Location = New System.Drawing.Point(410, 217)
+        Me.FileNameTB.Name = "FileNameTB"
+        Me.FileNameTB.Size = New System.Drawing.Size(134, 20)
+        Me.FileNameTB.TabIndex = 44
+        Me.FileNameTB.Tag = ""
+        Me.FileNameTB.WordWrap = False
+        '
+        'Label3
+        '
+        Me.Label3.AutoSize = True
+        Me.Label3.Location = New System.Drawing.Point(372, 220)
+        Me.Label3.Name = "Label3"
+        Me.Label3.Size = New System.Drawing.Size(36, 13)
+        Me.Label3.TabIndex = 45
+        Me.Label3.Text = "Файл"
+        '
+        'ButtonDopImages
+        '
+        Me.ButtonDopImages.Anchor = System.Windows.Forms.AnchorStyles.None
+        Me.ButtonDopImages.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.ButtonDopImages.Location = New System.Drawing.Point(410, 243)
+        Me.ButtonDopImages.Name = "ButtonDopImages"
+        Me.ButtonDopImages.Size = New System.Drawing.Size(131, 21)
+        Me.ButtonDopImages.TabIndex = 41
+        Me.ButtonDopImages.Text = "Доп. изображения"
         '
         'Dialog1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(435, 315)
+        Me.ClientSize = New System.Drawing.Size(556, 316)
+        Me.Controls.Add(Me.Label3)
+        Me.Controls.Add(Me.FileNameTB)
+        Me.Controls.Add(Me.PicButton)
+        Me.Controls.Add(Me.PicBoxAOC)
         Me.Controls.Add(Me.TableLayoutPanel2)
+        Me.Controls.Add(Me.ButtonDopImages)
         Me.Controls.Add(Me.ButtonAddPosts)
         Me.Controls.Add(Me.ButtonAddDepartaments)
         Me.Controls.Add(Me.PostSelect)
@@ -187,6 +247,7 @@ Partial Class Dialog1
         Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent
         Me.Text = "Dialog1"
         Me.TableLayoutPanel2.ResumeLayout(False)
+        CType(Me.PicBoxAOC, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -204,4 +265,9 @@ Partial Class Dialog1
     Friend WithEvents FIOText As TextBox
     Friend WithEvents OK_Button As Button
     Friend WithEvents Cancel_Button As Button
+    Friend WithEvents PicBoxAOC As PictureBox
+    Friend WithEvents PicButton As Button
+    Friend WithEvents FileNameTB As TextBox
+    Friend WithEvents Label3 As Label
+    Friend WithEvents ButtonDopImages As Button
 End Class

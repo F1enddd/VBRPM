@@ -2,6 +2,9 @@
     Dim DataSelectTable As New DataTable
 
     Dim LastSelectedItem As ListViewItem
+    Dim MaxPhoto As Integer
+    Dim CurrentPhoto As Integer
+    Public CurrentName As String
 
     Public Sub FillWorkersList()
         Me.WorkersTableAdapter.Fill(Me.User1DataSet.Workers)
@@ -21,9 +24,9 @@
             items(1) = Row(1)
             items(2) = Row(2)
             TempRow = Row.GetParentRow("FK_Workers_Departaments")
-            items(3) = TempRow(1)
+            items(3) = TempRow("Title")
             TempRow = Row.GetParentRow("FK_Workers_Posts")
-            items(4) = TempRow(1)
+            items(4) = TempRow("Title")
             Dim it As New ListViewItem()
             it.Text = Row(0)
             it.SubItems.AddRange(items)
@@ -31,7 +34,8 @@
 
         Next Row
 
-
+        Me.WorkersListView.Items(0).Selected = True
+        Me.WorkersListView.Focus()
 
     End Sub
     Public Sub Selection(SQLCommandSTR As String)
@@ -220,8 +224,8 @@ WHERE
     Private Sub ButtonDelete_Click(sender As Object, e As EventArgs) Handles ButtonDelete.Click
         Dim Rows() As DataRow
         For Each item As ListViewItem In WorkersListView.CheckedItems
-            Rows = User1DataSet.Workers.Select("ID ='" & item.Text & "'")
-            WorkersTableAdapter.Delete(Rows(0)(0), Rows(0)(1), Rows(0)(2), Rows(0)(3), Rows(0)(4))
+            Rows = User1DataSet.Workers.Select("ID = '" & item.Text & "'")
+            WorkersTableAdapter.Delete(Rows(0)(0), Rows(0)(1), Rows(0)(2), Rows(0)(3), Rows(0)(4), Rows(0)(5))
             item.Remove()
 
         Next item
@@ -262,15 +266,62 @@ WHERE
 
     Private Sub WorkersListView_ItemSelectionChanged(sender As Object, e As ListViewItemSelectionChangedEventArgs) Handles WorkersListView.ItemSelectionChanged
         LastSelectedItem = e.Item
+
+        Dim CurrentWorkersRow As DataRow = User1DataSet.Workers.Select("ID = '" & LastSelectedItem.Text & "'")(0)
+        Try
+            PicBoxWorkers.Image = Image.FromFile(IO.Directory.GetCurrentDirectory & "\Picture\" & CurrentWorkersRow("Image"))
+        Catch
+            PicBoxWorkers.Image = Image.FromFile(IO.Directory.GetCurrentDirectory & "\Picture\exept\notexist.png")
+        End Try
+
+        ImageList1.Images.Clear()
+        PictureBoxDopImage.Image = Nothing
+
+        MaxPhoto = PictureDopTableAdapter1.FillByCountPhoto(User1DataSet.PictureDop, LastSelectedItem.Text)
+        CurrentPhoto = PictureDopTableAdapter1.FillByCountPhoto(User1DataSet.PictureDop, LastSelectedItem.Text)
+
+        For Each Row As DataRow In Me.User1DataSet.PictureDop.Rows
+            If Row("ID_Workers") = LastSelectedItem.Text Then
+                Try
+                    Me.ImageList1.Images.Add(Image.FromFile(IO.Directory.GetCurrentDirectory & "\Picture\" & Row("PhotoName")))
+                Catch
+                    Me.ImageList1.Images.Add(Image.FromFile(IO.Directory.GetCurrentDirectory & "\Picture\exept\notexist.png"))
+                End Try
+            End If
+        Next
+
+        If CurrentPhoto = 0 Then
+            PictureBoxDopImage.Image = Image.FromFile(IO.Directory.GetCurrentDirectory & "\Picture\exept\notexist.png")
+            BtnNextImage.Enabled = False
+            BtnPrevImage.Enabled = False
+            LabelCountDopPhotos.Text = "0/0"
+            Exit Sub
+        End If
+        If CurrentPhoto = 1 Then
+            PictureBoxDopImage.Image = ImageList1.Images(0)
+            BtnNextImage.Enabled = False
+            BtnPrevImage.Enabled = False
+            LabelCountDopPhotos.Text = "1/1"
+        End If
+        If CurrentPhoto > 1 Then
+            PictureBoxDopImage.Image = ImageList1.Images(0)
+            BtnNextImage.Enabled = True
+            BtnPrevImage.Enabled = True
+            LabelCountDopPhotos.Text = 1 & "/" & MaxPhoto
+        End If
+        CurrentPhoto = 0
+
     End Sub
 
     Private Sub ToolStripMenuItemEdit_Click(sender As Object, e As EventArgs) Handles ToolStripMenuItemEdit.Click
+
         With Dialog1
             .Text = "Редактирование сотрудника"
             Dim CurrentWorkersRow As DataRow = User1DataSet.Workers.Select("ID = '" & LastSelectedItem.Text & "'")(0)
             .OldRowID = CurrentWorkersRow("ID")
             .AddOrChange = True
             .FIOText.Text = CurrentWorkersRow("FIO")
+            name = CurrentWorkersRow("FIO")
             .BirthdayDate.Value = CurrentWorkersRow("Birthday")
             .DepartamentsSelect.Text = CurrentWorkersRow.GetParentRow("FK_Workers_Departaments")("Title")
             .DepartamentsSelect.Items.Clear()
@@ -282,6 +333,12 @@ WHERE
             For Each Row As DataRow In User1DataSet.Posts.Rows
                 .PostSelect.Items.Add(Row("Title"))
             Next Row
+            Try
+                .PicBoxAOC.Image = Image.FromFile(IO.Directory.GetCurrentDirectory & "\Picture\" & CurrentWorkersRow("Image"))
+                .FileNameTB.Text = CurrentWorkersRow("Image")
+            Catch
+                .PicBoxAOC.Image = Image.FromFile(IO.Directory.GetCurrentDirectory & "\Picture\exept\notexist.png")
+            End Try
             .ShowDialog()
             If .DialogResult = Dialog1.DialogResult.OK Then
                 FillWorkersList()
@@ -301,9 +358,9 @@ WHERE
                 Items(1) = Row(1)
                 Items(2) = Row(2)
                 TempRow = Row.GetParentRow("FK_Workers_Departaments")
-                Items(3) = TempRow(1)
+                Items(3) = TempRow("Title")
                 TempRow = Row.GetParentRow("FK_Workers_Posts")
-                Items(4) = TempRow(1)
+                Items(4) = TempRow("Title")
                 Dim it As New ListViewItem()
                 it.Text = Row(0)
                 it.SubItems.AddRange(Items)
@@ -330,9 +387,9 @@ WHERE
                 Items(1) = Row(1)
                 Items(2) = Row(2)
                 TempRow = Row.GetParentRow("FK_Workers_Departaments")
-                Items(3) = TempRow(1)
+                Items(3) = TempRow("Title")
                 TempRow = Row.GetParentRow("FK_Workers_Posts")
-                Items(4) = TempRow(1)
+                Items(4) = TempRow("Title")
                 Dim it As New ListViewItem()
                 it.Text = Row(0)
                 it.SubItems.AddRange(Items)
@@ -357,9 +414,9 @@ WHERE
             Items(1) = Row(1)
             Items(2) = Row(2)
             TempRow = Row.GetParentRow("FK_Workers_Departaments")
-            Items(3) = TempRow(1)
+            Items(3) = TempRow("Title")
             TempRow = Row.GetParentRow("FK_Workers_Posts")
-            Items(4) = TempRow(1)
+            Items(4) = TempRow("Title")
             Dim it As New ListViewItem()
             it.Text = Row(0)
             it.SubItems.AddRange(Items)
@@ -385,9 +442,9 @@ WHERE
                 Items(1) = Row(1)
                 Items(2) = Row(2)
                 TempRow = Row.GetParentRow("FK_Workers_Departaments")
-                Items(3) = TempRow(1)
+                Items(3) = TempRow("Title")
                 TempRow = Row.GetParentRow("FK_Workers_Posts")
-                Items(4) = TempRow(1)
+                Items(4) = TempRow("Title")
                 Dim it As New ListViewItem()
                 it.Text = Row(0)
                 it.SubItems.AddRange(Items)
@@ -397,7 +454,7 @@ WHERE
     End Sub
 
     Private Sub СправкаToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles СправкаToolStripMenuItem.Click
-
+        Dialog5.ShowDialog()
     End Sub
 
     Private Sub TextBoxDepartamentsSearch_TextChanged(sender As Object, e As EventArgs) Handles TextBoxDepartamentsSearch.TextChanged
@@ -432,7 +489,43 @@ WHERE
         Next Row
     End Sub
 
+    Private Sub СвязанныеТаблицыToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles СвязанныеТаблицыToolStripMenuItem.Click
+        Dialog6.ShowDialog()
+    End Sub
 
+    Private Sub СвязанныеТаблицыНаборДанныхToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles СвязанныеТаблицыНаборДанныхToolStripMenuItem.Click
+        Dialog7.ShowDialog()
+    End Sub
 
+    Private Sub СвязанныеТаблицыНаборДанныхLVToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles СвязанныеТаблицыНаборДанныхLVToolStripMenuItem.Click
+        Dialog8.ShowDialog()
+    End Sub
+    Private Sub ВекторнаяГрафикаToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ВекторнаяГрафикаToolStripMenuItem.Click
+        Form9.ShowDialog()
+    End Sub
 
+    Private Sub BtnPrevImage_Click(sender As Object, e As EventArgs) Handles BtnPrevImage.Click
+        CurrentPhoto = CurrentPhoto - 1
+        If CurrentPhoto < 0 Then
+            CurrentPhoto = MaxPhoto - 1
+            LabelCountDopPhotos.Text = CurrentPhoto & "/" & MaxPhoto
+        End If
+        LabelCountDopPhotos.Text = CurrentPhoto + 1 & "/" & MaxPhoto
+
+        PictureBoxDopImage.Image = ImageList1.Images(CurrentPhoto)
+    End Sub
+
+    Private Sub BtnNextImage_Click(sender As Object, e As EventArgs) Handles BtnNextImage.Click
+        CurrentPhoto = CurrentPhoto + 1
+        If CurrentPhoto >= MaxPhoto Then
+            CurrentPhoto = 0
+        End If
+        LabelCountDopPhotos.Text = CurrentPhoto + 1 & "/" & MaxPhoto
+
+        PictureBoxDopImage.Image = ImageList1.Images(CurrentPhoto)
+    End Sub
+
+    Private Sub ИзменитьПодключениеToolStripMenuItem_Click(sender As Object, e As EventArgs) Handles ИзменитьПодключениеToolStripMenuItem.Click
+
+    End Sub
 End Class

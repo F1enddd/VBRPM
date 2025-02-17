@@ -36,4 +36,8 @@ Public Class Dialog3
             Dialog2.PostSelect.Items.Add(Row("Title"))
         Next Row
     End Sub
+
+    Private Sub Dialog3_Load(sender As Object, e As EventArgs) Handles MyBase.Load
+
+    End Sub
 End Class

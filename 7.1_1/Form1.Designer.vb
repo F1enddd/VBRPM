@@ -31,6 +31,9 @@ Partial Class Form1
         Me.ЗавершениеРаботыToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ОбщаяСтруктураToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ПросмотрИИзменениеToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.СвязанныеТаблицыToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.СвязанныеТаблицыНаборДанныхToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.СвязанныеТаблицыНаборДанныхLVToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.СправочникиToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.СотрудникиToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.ИзменениеToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
@@ -44,6 +47,7 @@ Partial Class Form1
         Me.ОКToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.ИванToolStripMenuItem1 = New System.Windows.Forms.ToolStripMenuItem()
         Me.СправкаToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
+        Me.ВекторнаяГрафикаToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.Label3 = New System.Windows.Forms.Label()
         Me.Label2 = New System.Windows.Forms.Label()
         Me.Label1 = New System.Windows.Forms.Label()
@@ -60,30 +64,41 @@ Partial Class Form1
         Me.Bitrthday = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.DepartamentsWorkers = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
         Me.PostsWorkers = CType(New System.Windows.Forms.ColumnHeader(), System.Windows.Forms.ColumnHeader)
-        Me.User1DataSet = New _7._1_1.user1DataSet()
-        Me.DepartamentsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.DepartamentsTableAdapter = New _7._1_1.user1DataSetTableAdapters.DepartamentsTableAdapter()
-        Me.TableAdapterManager = New _7._1_1.user1DataSetTableAdapters.TableAdapterManager()
-        Me.PostsTableAdapter = New _7._1_1.user1DataSetTableAdapters.PostsTableAdapter()
-        Me.WorkersTableAdapter = New _7._1_1.user1DataSetTableAdapters.WorkersTableAdapter()
-        Me.PostsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
-        Me.WorkersBindingSource = New System.Windows.Forms.BindingSource(Me.components)
         Me.ChangetoolStripMenuItem = New System.Windows.Forms.ContextMenuStrip(Me.components)
         Me.ToolStripMenuItemEdit = New System.Windows.Forms.ToolStripMenuItem()
         Me.TextBoxDepartamentsSearch = New System.Windows.Forms.TextBox()
         Me.Label4 = New System.Windows.Forms.Label()
+        Me.PicBoxWorkers = New System.Windows.Forms.PictureBox()
+        Me.PictureBoxDopImage = New System.Windows.Forms.PictureBox()
+        Me.BtnPrevImage = New System.Windows.Forms.Button()
+        Me.BtnNextImage = New System.Windows.Forms.Button()
+        Me.Label5 = New System.Windows.Forms.Label()
+        Me.ImageList1 = New System.Windows.Forms.ImageList(Me.components)
+        Me.LabelCountDopPhotos = New System.Windows.Forms.Label()
+        Me.User1DataSet = New _7._1_1.user1DataSet()
+        Me.DepartamentsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.PostsBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.WorkersBindingSource = New System.Windows.Forms.BindingSource(Me.components)
+        Me.TableAdapterManager = New _7._1_1.user1DataSetTableAdapters.TableAdapterManager()
+        Me.WorkersTableAdapter = New _7._1_1.user1DataSetTableAdapters.WorkersTableAdapter()
+        Me.PostsTableAdapter = New _7._1_1.user1DataSetTableAdapters.PostsTableAdapter()
+        Me.DepartamentsTableAdapter = New _7._1_1.user1DataSetTableAdapters.DepartamentsTableAdapter()
+        Me.PictureDopTableAdapter1 = New _7._1_1.user1DataSetTableAdapters.PictureDopTableAdapter()
+        Me.ИзменитьПодключениеToolStripMenuItem = New System.Windows.Forms.ToolStripMenuItem()
         Me.MainMenuStrip.SuspendLayout()
+        Me.ChangetoolStripMenuItem.SuspendLayout()
+        CType(Me.PicBoxWorkers, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBoxDopImage, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.User1DataSet, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.DepartamentsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PostsBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.WorkersBindingSource, System.ComponentModel.ISupportInitialize).BeginInit()
-        Me.ChangetoolStripMenuItem.SuspendLayout()
         Me.SuspendLayout()
         '
         'ButtonSqlOut
         '
         Me.ButtonSqlOut.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonSqlOut.Location = New System.Drawing.Point(395, 60)
+        Me.ButtonSqlOut.Location = New System.Drawing.Point(663, 60)
         Me.ButtonSqlOut.Name = "ButtonSqlOut"
         Me.ButtonSqlOut.Size = New System.Drawing.Size(136, 23)
         Me.ButtonSqlOut.TabIndex = 0
@@ -93,7 +108,7 @@ Partial Class Form1
         'ButtonGridView
         '
         Me.ButtonGridView.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonGridView.Location = New System.Drawing.Point(226, 60)
+        Me.ButtonGridView.Location = New System.Drawing.Point(494, 60)
         Me.ButtonGridView.Name = "ButtonGridView"
         Me.ButtonGridView.Size = New System.Drawing.Size(163, 23)
         Me.ButtonGridView.TabIndex = 0
@@ -102,16 +117,16 @@ Partial Class Form1
         '
         'MainMenuStrip
         '
-        Me.MainMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ФайлToolStripMenuItem, Me.ОбщаяСтруктураToolStripMenuItem, Me.СправочникиToolStripMenuItem, Me.ОтчётыToolStripMenuItem, Me.СправкаToolStripMenuItem})
+        Me.MainMenuStrip.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ФайлToolStripMenuItem, Me.ОбщаяСтруктураToolStripMenuItem, Me.СправочникиToolStripMenuItem, Me.ОтчётыToolStripMenuItem, Me.СправкаToolStripMenuItem, Me.ВекторнаяГрафикаToolStripMenuItem})
         Me.MainMenuStrip.Location = New System.Drawing.Point(0, 0)
         Me.MainMenuStrip.Name = "MainMenuStrip"
-        Me.MainMenuStrip.Size = New System.Drawing.Size(715, 24)
+        Me.MainMenuStrip.Size = New System.Drawing.Size(990, 24)
         Me.MainMenuStrip.TabIndex = 1
         Me.MainMenuStrip.Text = "MenuStrip1"
         '
         'ФайлToolStripMenuItem
         '
-        Me.ФайлToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ЗавершениеРаботыToolStripMenuItem})
+        Me.ФайлToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ИзменитьПодключениеToolStripMenuItem, Me.ЗавершениеРаботыToolStripMenuItem})
         Me.ФайлToolStripMenuItem.Name = "ФайлToolStripMenuItem"
         Me.ФайлToolStripMenuItem.Size = New System.Drawing.Size(48, 20)
         Me.ФайлToolStripMenuItem.Text = "Файл"
@@ -119,12 +134,12 @@ Partial Class Form1
         'ЗавершениеРаботыToolStripMenuItem
         '
         Me.ЗавершениеРаботыToolStripMenuItem.Name = "ЗавершениеРаботыToolStripMenuItem"
-        Me.ЗавершениеРаботыToolStripMenuItem.Size = New System.Drawing.Size(187, 22)
+        Me.ЗавершениеРаботыToolStripMenuItem.Size = New System.Drawing.Size(207, 22)
         Me.ЗавершениеРаботыToolStripMenuItem.Text = "Завершение работы"
         '
         'ОбщаяСтруктураToolStripMenuItem
         '
-        Me.ОбщаяСтруктураToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ПросмотрИИзменениеToolStripMenuItem})
+        Me.ОбщаяСтруктураToolStripMenuItem.DropDownItems.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ПросмотрИИзменениеToolStripMenuItem, Me.СвязанныеТаблицыToolStripMenuItem, Me.СвязанныеТаблицыНаборДанныхToolStripMenuItem, Me.СвязанныеТаблицыНаборДанныхLVToolStripMenuItem})
         Me.ОбщаяСтруктураToolStripMenuItem.Name = "ОбщаяСтруктураToolStripMenuItem"
         Me.ОбщаяСтруктураToolStripMenuItem.Size = New System.Drawing.Size(115, 20)
         Me.ОбщаяСтруктураToolStripMenuItem.Text = "Общая структура"
@@ -132,8 +147,26 @@ Partial Class Form1
         'ПросмотрИИзменениеToolStripMenuItem
         '
         Me.ПросмотрИИзменениеToolStripMenuItem.Name = "ПросмотрИИзменениеToolStripMenuItem"
-        Me.ПросмотрИИзменениеToolStripMenuItem.Size = New System.Drawing.Size(204, 22)
+        Me.ПросмотрИИзменениеToolStripMenuItem.Size = New System.Drawing.Size(295, 22)
         Me.ПросмотрИИзменениеToolStripMenuItem.Text = "Просмотр и изменение"
+        '
+        'СвязанныеТаблицыToolStripMenuItem
+        '
+        Me.СвязанныеТаблицыToolStripMenuItem.Name = "СвязанныеТаблицыToolStripMenuItem"
+        Me.СвязанныеТаблицыToolStripMenuItem.Size = New System.Drawing.Size(295, 22)
+        Me.СвязанныеТаблицыToolStripMenuItem.Text = "Связанные таблицы"
+        '
+        'СвязанныеТаблицыНаборДанныхToolStripMenuItem
+        '
+        Me.СвязанныеТаблицыНаборДанныхToolStripMenuItem.Name = "СвязанныеТаблицыНаборДанныхToolStripMenuItem"
+        Me.СвязанныеТаблицыНаборДанныхToolStripMenuItem.Size = New System.Drawing.Size(295, 22)
+        Me.СвязанныеТаблицыНаборДанныхToolStripMenuItem.Text = "Связанные таблицы(Набор данных)"
+        '
+        'СвязанныеТаблицыНаборДанныхLVToolStripMenuItem
+        '
+        Me.СвязанныеТаблицыНаборДанныхLVToolStripMenuItem.Name = "СвязанныеТаблицыНаборДанныхLVToolStripMenuItem"
+        Me.СвязанныеТаблицыНаборДанныхLVToolStripMenuItem.Size = New System.Drawing.Size(295, 22)
+        Me.СвязанныеТаблицыНаборДанныхLVToolStripMenuItem.Text = "Связанные таблицы(Набор данных (LV))"
         '
         'СправочникиToolStripMenuItem
         '
@@ -198,19 +231,19 @@ Partial Class Form1
         'БухглатерыToolStripMenuItem
         '
         Me.БухглатерыToolStripMenuItem.Name = "БухглатерыToolStripMenuItem"
-        Me.БухглатерыToolStripMenuItem.Size = New System.Drawing.Size(138, 22)
+        Me.БухглатерыToolStripMenuItem.Size = New System.Drawing.Size(137, 22)
         Me.БухглатерыToolStripMenuItem.Text = "Бухглатеры"
         '
         'ОКToolStripMenuItem1
         '
         Me.ОКToolStripMenuItem1.Name = "ОКToolStripMenuItem1"
-        Me.ОКToolStripMenuItem1.Size = New System.Drawing.Size(138, 22)
+        Me.ОКToolStripMenuItem1.Size = New System.Drawing.Size(137, 22)
         Me.ОКToolStripMenuItem1.Text = "ОК"
         '
         'ИванToolStripMenuItem1
         '
         Me.ИванToolStripMenuItem1.Name = "ИванToolStripMenuItem1"
-        Me.ИванToolStripMenuItem1.Size = New System.Drawing.Size(138, 22)
+        Me.ИванToolStripMenuItem1.Size = New System.Drawing.Size(137, 22)
         Me.ИванToolStripMenuItem1.Text = "Иван"
         '
         'СправкаToolStripMenuItem
@@ -219,10 +252,16 @@ Partial Class Form1
         Me.СправкаToolStripMenuItem.Size = New System.Drawing.Size(65, 20)
         Me.СправкаToolStripMenuItem.Text = "Справка"
         '
+        'ВекторнаяГрафикаToolStripMenuItem
+        '
+        Me.ВекторнаяГрафикаToolStripMenuItem.Name = "ВекторнаяГрафикаToolStripMenuItem"
+        Me.ВекторнаяГрафикаToolStripMenuItem.Size = New System.Drawing.Size(125, 20)
+        Me.ВекторнаяГрафикаToolStripMenuItem.Text = "Векторная графика"
+        '
         'Label3
         '
         Me.Label3.AutoSize = True
-        Me.Label3.Location = New System.Drawing.Point(510, 32)
+        Me.Label3.Location = New System.Drawing.Point(778, 34)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(65, 13)
         Me.Label3.TabIndex = 13
@@ -231,7 +270,7 @@ Partial Class Form1
         'Label2
         '
         Me.Label2.AutoSize = True
-        Me.Label2.Location = New System.Drawing.Point(291, 32)
+        Me.Label2.Location = New System.Drawing.Point(559, 34)
         Me.Label2.Name = "Label2"
         Me.Label2.Size = New System.Drawing.Size(38, 13)
         Me.Label2.TabIndex = 14
@@ -249,7 +288,7 @@ Partial Class Form1
         'ButtonFiltersClear
         '
         Me.ButtonFiltersClear.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.ButtonFiltersClear.Location = New System.Drawing.Point(537, 60)
+        Me.ButtonFiltersClear.Location = New System.Drawing.Point(805, 60)
         Me.ButtonFiltersClear.Name = "ButtonFiltersClear"
         Me.ButtonFiltersClear.Size = New System.Drawing.Size(165, 23)
         Me.ButtonFiltersClear.TabIndex = 12
@@ -268,7 +307,7 @@ Partial Class Form1
         '
         Me.ComboBoxFilterPosts.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ComboBoxFilterPosts.FormattingEnabled = True
-        Me.ComboBoxFilterPosts.Location = New System.Drawing.Point(581, 26)
+        Me.ComboBoxFilterPosts.Location = New System.Drawing.Point(849, 28)
         Me.ComboBoxFilterPosts.Name = "ComboBoxFilterPosts"
         Me.ComboBoxFilterPosts.Size = New System.Drawing.Size(121, 21)
         Me.ComboBoxFilterPosts.TabIndex = 9
@@ -277,7 +316,7 @@ Partial Class Form1
         '
         Me.ComboBoxFilterDepartaments.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.ComboBoxFilterDepartaments.FormattingEnabled = True
-        Me.ComboBoxFilterDepartaments.Location = New System.Drawing.Point(335, 26)
+        Me.ComboBoxFilterDepartaments.Location = New System.Drawing.Point(603, 28)
         Me.ComboBoxFilterDepartaments.Name = "ComboBoxFilterDepartaments"
         Me.ComboBoxFilterDepartaments.Size = New System.Drawing.Size(127, 21)
         Me.ComboBoxFilterDepartaments.TabIndex = 10
@@ -353,46 +392,6 @@ Partial Class Form1
         Me.PostsWorkers.Text = "Должность"
         Me.PostsWorkers.Width = 167
         '
-        'User1DataSet
-        '
-        Me.User1DataSet.DataSetName = "user1DataSet"
-        Me.User1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
-        '
-        'DepartamentsBindingSource
-        '
-        Me.DepartamentsBindingSource.DataMember = "Departaments"
-        Me.DepartamentsBindingSource.DataSource = Me.User1DataSet
-        '
-        'DepartamentsTableAdapter
-        '
-        Me.DepartamentsTableAdapter.ClearBeforeFill = True
-        '
-        'TableAdapterManager
-        '
-        Me.TableAdapterManager.BackupDataSetBeforeUpdate = False
-        Me.TableAdapterManager.DepartamentsTableAdapter = Me.DepartamentsTableAdapter
-        Me.TableAdapterManager.PostsTableAdapter = Me.PostsTableAdapter
-        Me.TableAdapterManager.UpdateOrder = _7._1_1.user1DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
-        Me.TableAdapterManager.WorkersTableAdapter = Me.WorkersTableAdapter
-        '
-        'PostsTableAdapter
-        '
-        Me.PostsTableAdapter.ClearBeforeFill = True
-        '
-        'WorkersTableAdapter
-        '
-        Me.WorkersTableAdapter.ClearBeforeFill = True
-        '
-        'PostsBindingSource
-        '
-        Me.PostsBindingSource.DataMember = "Posts"
-        Me.PostsBindingSource.DataSource = Me.User1DataSet
-        '
-        'WorkersBindingSource
-        '
-        Me.WorkersBindingSource.DataMember = "Workers"
-        Me.WorkersBindingSource.DataSource = Me.User1DataSet
-        '
         'ChangetoolStripMenuItem
         '
         Me.ChangetoolStripMenuItem.Items.AddRange(New System.Windows.Forms.ToolStripItem() {Me.ToolStripMenuItemEdit})
@@ -422,11 +421,130 @@ Partial Class Form1
         Me.Label4.TabIndex = 14
         Me.Label4.Text = "Отдел"
         '
+        'PicBoxWorkers
+        '
+        Me.PicBoxWorkers.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PicBoxWorkers.Location = New System.Drawing.Point(708, 89)
+        Me.PicBoxWorkers.Name = "PicBoxWorkers"
+        Me.PicBoxWorkers.Size = New System.Drawing.Size(262, 177)
+        Me.PicBoxWorkers.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PicBoxWorkers.TabIndex = 21
+        Me.PicBoxWorkers.TabStop = False
+        '
+        'PictureBoxDopImage
+        '
+        Me.PictureBoxDopImage.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.PictureBoxDopImage.Location = New System.Drawing.Point(708, 300)
+        Me.PictureBoxDopImage.Name = "PictureBoxDopImage"
+        Me.PictureBoxDopImage.Size = New System.Drawing.Size(262, 177)
+        Me.PictureBoxDopImage.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBoxDopImage.TabIndex = 21
+        Me.PictureBoxDopImage.TabStop = False
+        '
+        'BtnPrevImage
+        '
+        Me.BtnPrevImage.Location = New System.Drawing.Point(759, 483)
+        Me.BtnPrevImage.Name = "BtnPrevImage"
+        Me.BtnPrevImage.Size = New System.Drawing.Size(75, 23)
+        Me.BtnPrevImage.TabIndex = 22
+        Me.BtnPrevImage.Text = "<"
+        Me.BtnPrevImage.UseVisualStyleBackColor = True
+        '
+        'BtnNextImage
+        '
+        Me.BtnNextImage.Location = New System.Drawing.Point(840, 483)
+        Me.BtnNextImage.Name = "BtnNextImage"
+        Me.BtnNextImage.Size = New System.Drawing.Size(75, 23)
+        Me.BtnNextImage.TabIndex = 22
+        Me.BtnNextImage.Text = ">"
+        Me.BtnNextImage.UseVisualStyleBackColor = True
+        '
+        'Label5
+        '
+        Me.Label5.AutoSize = True
+        Me.Label5.Location = New System.Drawing.Point(705, 283)
+        Me.Label5.Name = "Label5"
+        Me.Label5.Size = New System.Drawing.Size(105, 13)
+        Me.Label5.TabIndex = 23
+        Me.Label5.Text = "Доп. изображение:"
+        '
+        'ImageList1
+        '
+        Me.ImageList1.ColorDepth = System.Windows.Forms.ColorDepth.Depth8Bit
+        Me.ImageList1.ImageSize = New System.Drawing.Size(256, 256)
+        Me.ImageList1.TransparentColor = System.Drawing.Color.Transparent
+        '
+        'LabelCountDopPhotos
+        '
+        Me.LabelCountDopPhotos.AutoSize = True
+        Me.LabelCountDopPhotos.Location = New System.Drawing.Point(825, 510)
+        Me.LabelCountDopPhotos.Name = "LabelCountDopPhotos"
+        Me.LabelCountDopPhotos.Size = New System.Drawing.Size(24, 13)
+        Me.LabelCountDopPhotos.TabIndex = 24
+        Me.LabelCountDopPhotos.Text = "?/?"
+        '
+        'User1DataSet
+        '
+        Me.User1DataSet.DataSetName = "user1DataSet"
+        Me.User1DataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema
+        '
+        'DepartamentsBindingSource
+        '
+        Me.DepartamentsBindingSource.DataMember = "Departaments"
+        Me.DepartamentsBindingSource.DataSource = Me.User1DataSet
+        '
+        'PostsBindingSource
+        '
+        Me.PostsBindingSource.DataMember = "Posts"
+        Me.PostsBindingSource.DataSource = Me.User1DataSet
+        '
+        'WorkersBindingSource
+        '
+        Me.WorkersBindingSource.DataMember = "Workers"
+        Me.WorkersBindingSource.DataSource = Me.User1DataSet
+        '
+        'TableAdapterManager
+        '
+        Me.TableAdapterManager.BackupDataSetBeforeUpdate = False
+        Me.TableAdapterManager.DepartamentsTableAdapter = Nothing
+        Me.TableAdapterManager.PictureDopTableAdapter = Nothing
+        Me.TableAdapterManager.PostsTableAdapter = Nothing
+        Me.TableAdapterManager.UpdateOrder = _7._1_1.user1DataSetTableAdapters.TableAdapterManager.UpdateOrderOption.InsertUpdateDelete
+        Me.TableAdapterManager.WorkersTableAdapter = Me.WorkersTableAdapter
+        '
+        'WorkersTableAdapter
+        '
+        Me.WorkersTableAdapter.ClearBeforeFill = True
+        '
+        'PostsTableAdapter
+        '
+        Me.PostsTableAdapter.ClearBeforeFill = True
+        '
+        'DepartamentsTableAdapter
+        '
+        Me.DepartamentsTableAdapter.ClearBeforeFill = True
+        '
+        'PictureDopTableAdapter1
+        '
+        Me.PictureDopTableAdapter1.ClearBeforeFill = True
+        '
+        'ИзменитьПодключениеToolStripMenuItem
+        '
+        Me.ИзменитьПодключениеToolStripMenuItem.Name = "ИзменитьПодключениеToolStripMenuItem"
+        Me.ИзменитьПодключениеToolStripMenuItem.Size = New System.Drawing.Size(207, 22)
+        Me.ИзменитьПодключениеToolStripMenuItem.Text = "Изменить подключение"
+        '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(715, 440)
+        Me.ClientSize = New System.Drawing.Size(990, 529)
+        Me.Controls.Add(Me.LabelCountDopPhotos)
+        Me.Controls.Add(Me.Label5)
+        Me.Controls.Add(Me.BtnNextImage)
+        Me.Controls.Add(Me.BtnPrevImage)
+        Me.Controls.Add(Me.PictureBoxDopImage)
+        Me.Controls.Add(Me.PicBoxWorkers)
         Me.Controls.Add(Me.ButtonDialog2)
         Me.Controls.Add(Me.ButtonDelete)
         Me.Controls.Add(Me.AddButton)
@@ -448,11 +566,13 @@ Partial Class Form1
         Me.Text = "Главная страница"
         Me.MainMenuStrip.ResumeLayout(False)
         Me.MainMenuStrip.PerformLayout()
+        Me.ChangetoolStripMenuItem.ResumeLayout(False)
+        CType(Me.PicBoxWorkers, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBoxDopImage, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.User1DataSet, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.DepartamentsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PostsBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.WorkersBindingSource, System.ComponentModel.ISupportInitialize).EndInit()
-        Me.ChangetoolStripMenuItem.ResumeLayout(False)
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -496,14 +616,27 @@ Partial Class Form1
     Friend WithEvents PostsWorkers As ColumnHeader
     Friend WithEvents User1DataSet As user1DataSet
     Friend WithEvents DepartamentsBindingSource As BindingSource
-    Friend WithEvents DepartamentsTableAdapter As user1DataSetTableAdapters.DepartamentsTableAdapter
-    Friend WithEvents TableAdapterManager As user1DataSetTableAdapters.TableAdapterManager
-    Friend WithEvents PostsTableAdapter As user1DataSetTableAdapters.PostsTableAdapter
     Friend WithEvents PostsBindingSource As BindingSource
-    Friend WithEvents WorkersTableAdapter As user1DataSetTableAdapters.WorkersTableAdapter
     Friend WithEvents WorkersBindingSource As BindingSource
     Friend WithEvents ChangetoolStripMenuItem As ContextMenuStrip
     Friend WithEvents ToolStripMenuItemEdit As ToolStripMenuItem
     Friend WithEvents TextBoxDepartamentsSearch As TextBox
     Friend WithEvents Label4 As Label
+    Friend WithEvents TableAdapterManager As user1DataSetTableAdapters.TableAdapterManager
+    Friend WithEvents WorkersTableAdapter As user1DataSetTableAdapters.WorkersTableAdapter
+    Friend WithEvents СвязанныеТаблицыToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents СвязанныеТаблицыНаборДанныхToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents СвязанныеТаблицыНаборДанныхLVToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PicBoxWorkers As PictureBox
+    Friend WithEvents PostsTableAdapter As user1DataSetTableAdapters.PostsTableAdapter
+    Friend WithEvents DepartamentsTableAdapter As user1DataSetTableAdapters.DepartamentsTableAdapter
+    Friend WithEvents ВекторнаяГрафикаToolStripMenuItem As ToolStripMenuItem
+    Friend WithEvents PictureBoxDopImage As PictureBox
+    Friend WithEvents PictureDopTableAdapter1 As user1DataSetTableAdapters.PictureDopTableAdapter
+    Friend WithEvents BtnPrevImage As Button
+    Friend WithEvents BtnNextImage As Button
+    Friend WithEvents Label5 As Label
+    Friend WithEvents ImageList1 As ImageList
+    Friend WithEvents LabelCountDopPhotos As Label
+    Friend WithEvents ИзменитьПодключениеToolStripMenuItem As ToolStripMenuItem
 End Class
